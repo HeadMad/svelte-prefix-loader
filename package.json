@@ -1,0 +1,12 @@
+{
+  "name": "svelte-prefix-loader",
+  "version": "1.0.0",
+  "description": "svelte component autoloader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "HeadMad",
+  "license": "MIT",
+  "dependencies": {}
+}
