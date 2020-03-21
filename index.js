@@ -106,10 +106,10 @@ const findPrefixTags = (prefixes) => ({content, filename}) => {
  * 
  * @param {Object} opts like {prefix: path}
  */
-const prefixLoader = (opts) => {
-  if (!opts) return {}
-  const prefixes = Object.entries(opts)
-  const markup = findPrefixTags(prefixes)
+const prefixLoader = (prefixes) => {
+  if (!prefixes) return {}
+  const prefixesEntries = Object.entries(prefixes)
+  const markup = findPrefixTags(prefixesEntries)
   return {markup}
 }
 
