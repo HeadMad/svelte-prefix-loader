@@ -1,25 +1,9 @@
-
 const HTMLParser = require('./lib/HTMLParser')
-const convertPath = require('./lib/pathConverter')
 const path = require('path')
+const defaultHandler = require('./lib/defaultHandler')
 
 let FIRST_FILE_PATH, HAS_SCRIPT_SECTION
 const ALL_PREFIXED_TAGS = new Map()
-
-/**
- * 
- * @param {String} tag 
- * @param {String} prefixPath
- * @return {String} Full path of .svelte file
- */
-const parseTagPath = (tag, prefixPath) => {
-  const splitedTag = tag.replace(/\B([A-Z])/g, '|$1').split('|')
-  let parsedPath = prefixPath;
-  ['prefix', 'block', 'elem'].forEach((search, i) => {
-    parsedPath = convertPath(parsedPath, search, splitedTag[i])
-  })
-  return path.join(FIRST_FILE_PATH, parsedPath).replace(/\\/g, '/') + '.svelte'
-}
 
 /**
  * 
@@ -30,12 +14,15 @@ const parseTagPath = (tag, prefixPath) => {
 const sortTagsList = (tags, prefixes) => {
   const result = new Map();
   tags.forEach(tag => {
-    prefixes.forEach(([prefix, prefixPath]) => {
-      if (!tag.startsWith(prefix) || result.has(tag)) return
+    const [prefix, block, elem] = tag.replace(/\B([A-Z])/g, '|$1').split('|', 3)
+    prefixes.forEach(([pre, handler]) => {
+      if (pre !== prefix || result.has(tag)) return
       if (ALL_PREFIXED_TAGS.has(tag)) {
         result.set(tag, ALL_PREFIXED_TAGS.get(tag))
       } else {
-        let parsedPath = parseTagPath(tag, prefixPath)
+        let parsedPath = (typeof handler === 'function')
+          ? handler(FIRST_FILE_PATH, {prefix, block, elem})
+          : defaultHandler(handler)(FIRST_FILE_PATH, {prefix, block, elem})
         ALL_PREFIXED_TAGS.set(tag, parsedPath)
         result.set(tag, parsedPath)
       }
