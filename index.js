@@ -1,4 +1,4 @@
-const HTMLParser = require('./lib/HTMLParser')
+const HTMLParser = require('./util/HTMLParser')
 const path = require('path')
 const defaultHandler = require('./lib/defaultHandler')
 
