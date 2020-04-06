@@ -27,16 +27,25 @@ module.exports = {
 }
 ```
 - In path template, you can use PascalCase lettering. For example:
-<br>`<MyHeaderLogo />`
-<br>`./[prefix]/[block][-elem].svelte` => `./my/header-logo.svelte`
-<br>`./[Prefix]/[Block][Elem].svelte` => `./My/HeaderLogo.svelte`
+```
+<MyHeaderLogo />
+
+./[prefix]/[block][-elem].svelte => ./my/header-logo.svelte
+./[Prefix]/[Block][Elem].svelte => ./My/HeaderLogo.svelte
+```
 - In square brackets, you can use any simbols **before** keyword (prefix, block, elem). For example:
-<br>`<MyHeaderLogo />`
-<br>`./[prefix]/[block][__elem].svelte` => `./my/header__logo.svelte`
-- If if tag has no Blocl or Elem, template just skip they in result. For example:
-<br>`./bem/[block][/__elem][/block][__elem].svelte`
-<br>`<MyHeader />` => `./bem/header/header.svelte`
-<br>`<MyHeaderLogo />` => `./bem/header/__logo/header__logo.svelte`
+```
+<MyHeaderLogo />
+
+./[prefix]/[block][__elem].svelte => ./my/header__logo.svelte
+```
+- If tag has no `Block` or `Elem` section, template just skip they in result. For example:
+```
+./bem/[block][/__elem][/block][__elem].svelte
+
+<MyHeader /> => ./bem/header/header.svelte
+<MyHeaderLogo /> => ./bem/header/__logo/header__logo.svelte
+```
 
 
 
