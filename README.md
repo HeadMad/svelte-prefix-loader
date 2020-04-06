@@ -1,6 +1,7 @@
 # svelte-prefix-loader
 
 The plugin `svelte-prefix-loader` allows you to specify the directory from which you want to autoload the components, depending on the prefixes in the tag name.
+
 ```javascript
 // rollup.config.js
 
@@ -25,7 +26,22 @@ module.exports = {
   ...
 }
 ```
-Also, as a path you can specify a function that should return string - path to svelte-file
+- In path template, you can use PascalCase lettering. For example:
+<br>`<MyHeaderLogo />`
+<br>`./[prefix]/[block][-elem].svelte` => `./my/header-logo.svelte`
+<br>`./[Prefix]/[Block][Elem].svelte` => `./My/HeaderLogo.svelte`
+- In square brackets, you can use any simbols **before** keyword (prefix, block, elem). For example:
+<br>`<MyHeaderLogo />`
+<br>`./[prefix]/[block][__elem].svelte` => `./my/header__logo.svelte`
+- If if tag has no Blocl or Elem, template just skip they in result. For example:
+<br>`./bem/[block][/__elem][/block][__elem].svelte`
+<br>`<MyHeader />` => `./bem/header/header.svelte`
+<br>`<MyHeaderLogo />` => `./bem/header/__logo/header__logo.svelte`
+
+
+
+## Also
+As a path you can specify a function that should return string - path to svelte-file
 
 
 
