@@ -2,6 +2,16 @@
 
 The plugin `svelte-prefix-loader` allows you to specify the directory from which you want to autoload the components, depending on the prefixes in the tag name.
 
+## Install
+```
+npm install --save-dev svelte-prefix-loader
+```
+or
+```
+npm i -D headmad/svelte-prefix-loader
+```
+
+## Usage
 ```javascript
 // rollup.config.js
 
