@@ -1,10 +1,24 @@
 {
   "name": "svelte-prefix-loader",
   "version": "1.0.2",
-  "description": "svelte component autoloader",
+  "description": "Svelte component autoloader",
+  "keywords": [
+    "svelte",
+    "svelte-plugin",
+    "autoloader",
+    "components"
+  ],
   "main": "index.js",
   "scripts": {},
-  "author": "HeadMad",
+  "author": "HeadMad <kov.ps@yandex.ru>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeadMad/svelte-prefix-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HeadMad/svelte-prefix-loader/issues"
+  },
+  "homepage": "https://github.com/HeadMad/svelte-prefix-loader#readme",
   "dependencies": {}
 }
